@@ -1,12 +1,14 @@
 function getComputerChoice() {
-    const choices = ["rock", "paper", "scissors"];
-    return choices[Math.floor(Math.random() * 3)];
+        const choices = ["rock", "paper", "scissors"];
+        return choices[Math.floor(Math.random() * 3)];
 };
 function getHumanChoice() {
     return prompt("Rock, Paper, or Scissors?").toLowerCase()
 };
 let humanScore = 0;
 let computerScore = 0;
+let humanSelection;
+let computerSelection;
 function playRound(humanChoice, computerChoice) {
     if (humanChoice === computerChoice) {
         resultMessage = computerChoice + " You tie!"
@@ -37,8 +39,20 @@ function playRound(humanChoice, computerChoice) {
     }
     return resultMessage
 };
-
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
-
-console.log(playRound(humanSelection, computerSelection));
+function playGame () {
+    for (let roundNumber = 0; roundNumber < 5; roundNumber++) {
+        humanSelection = getHumanChoice();
+        computerSelection = getComputerChoice();
+        console.log(playRound(humanSelection, computerSelection));
+    }
+    let gameResultMessage;
+    if (humanScore > computerScore) {
+        gameResultMessage = "You Won The Game!"
+    } else if (humanScore < computerScore) {
+        gameResultMessage = "You Lost The Game!"
+    } else {
+        gameResultMessage = "You Tied The Game! (Somehow)"
+    }
+    return gameResultMessage + " The Score Was: " + humanScore + " to " + computerScore
+}
+console.log(playGame());
